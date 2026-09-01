@@ -1,355 +1,261 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Futuro da IA · Jornada Interativa</title>
-  <style>
-    /* ===== ESTILOS GLOBAIS ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuro da IA</title>
+    <style>
+        :root {
+            --cor-fundo: #01080E;
+            --cor-principal: #0B0D20;
+            --cor-secundaria: #212333;
+            --cor-destaque: #2BDEFD;
+            --cor-texto: #D7F9FF;
+        }
 
-    :root {
-      --cor-fundo: #01080E;
-      --cor-principal: #0B0D20;
-      --cor-secundaria: #212333;
-      --cor-destaque: #2BDEFD;
-      --cor-texto: #D7F9FF;
-      --sombra: 0 8px 24px rgba(43, 222, 253, 0.15);
-      --borda-arredondada: 28px;
-      --transicao: 0.3s ease;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background-color: var(--cor-fundo);
-      color: var(--cor-texto);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 1.5rem;
-      background-image: radial-gradient(circle at 20% 30%, rgba(43, 222, 253, 0.03) 0%, transparent 60%);
-    }
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 20px;
+        }
 
-    .caixa-principal {
-      background-color: var(--cor-principal);
-      width: 100%;
-      max-width: 720px;
-      padding: 2.5rem 2rem 2.8rem;
-      border-radius: var(--borda-arredondada);
-      box-shadow: var(--sombra);
-      border: 1px solid rgba(43, 222, 253, 0.08);
-      transition: var(--transicao);
-      backdrop-filter: blur(2px);
-    }
+        .caixa-principal {
+            background-color: var(--cor-principal);
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            padding: 30px 25px;
+            border-radius: 24px;
+            border: 1px solid rgba(43, 222, 253, 0.15);
+            box-shadow: 0 8px 32px rgba(43, 222, 253, 0.08);
+        }
 
-    .caixa-principal:hover {
-      box-shadow: 0 12px 40px rgba(43, 222, 253, 0.2);
-    }
+        h1 {
+            color: var(--cor-destaque);
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
 
-    h1 {
-      color: var(--cor-destaque);
-      font-size: 2.2rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      margin-bottom: 1.8rem;
-      text-shadow: 0 0 12px rgba(43, 222, 253, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+        .caixa-perguntas {
+            font-size: 1.3rem;
+            line-height: 1.5;
+            min-height: 80px;
+            padding: 15px 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(43, 222, 253, 0.15);
+            color: #e8faff;
+        }
 
-    h1::after {
-      content: "⚡";
-      font-size: 1.8rem;
-      filter: drop-shadow(0 0 6px #2BDEFD);
-    }
+        .caixa-alternativas {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0 15px;
+        }
 
-    .caixa-perguntas {
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 1.4;
-      padding: 1.2rem 0.5rem;
-      margin-bottom: 1.8rem;
-      border-bottom: 2px dashed rgba(43, 222, 253, 0.2);
-      min-height: 5rem;
-      color: #f0fcff;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-    }
+        button {
+            background-color: var(--cor-secundaria);
+            color: var(--cor-texto);
+            border: none;
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: left;
+            line-height: 1.4;
+            border: 1px solid transparent;
+        }
 
-    .caixa-alternativas {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 2rem 0 1.5rem;
-    }
+        button:hover {
+            background-color: var(--cor-destaque);
+            color: var(--cor-principal);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(43, 222, 253, 0.2);
+            border-color: var(--cor-destaque);
+        }
 
-    button {
-      background-color: var(--cor-secundaria);
-      color: var(--cor-texto);
-      border: none;
-      border-radius: 60px;
-      padding: 1rem 1.8rem;
-      font-size: 1.1rem;
-      font-weight: 500;
-      transition: all var(--transicao);
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(43, 222, 253, 0.08);
-      text-align: left;
-      line-height: 1.4;
-      letter-spacing: 0.2px;
-      width: 100%;
-    }
+        .caixa-resultado {
+            margin-top: 25px;
+            padding: 20px 18px;
+            background: rgba(11, 13, 32, 0.6);
+            border-radius: 20px;
+            border-left: 4px solid var(--cor-destaque);
+        }
 
-    button:hover {
-      background-color: var(--cor-destaque);
-      color: var(--cor-principal);
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 12px 24px rgba(43, 222, 253, 0.25);
-      border-color: var(--cor-destaque);
-    }
+        .texto-resultado {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e2faff;
+            text-align: left;
+        }
 
-    button:active {
-      transform: scale(0.97) translateY(0);
-    }
+        /* Estado final */
+        .final .caixa-alternativas {
+            display: none;
+        }
 
-    .caixa-resultado {
-      margin-top: 2.2rem;
-      padding: 1.8rem 1.2rem;
-      background: rgba(11, 13, 32, 0.7);
-      border-radius: 40px;
-      border-left: 4px solid var(--cor-destaque);
-      backdrop-filter: blur(2px);
-    }
+        .final .caixa-perguntas {
+            border-bottom-color: var(--cor-destaque);
+            color: var(--cor-destaque);
+        }
 
-    .texto-resultado {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #e2faff;
-      font-weight: 400;
-      text-align: left;
-      padding: 0.2rem 0.5rem;
-      white-space: pre-wrap;
-    }
-
-    /* estado final (sem alternativas) */
-    .caixa-principal.final .caixa-alternativas {
-      display: none;
-    }
-
-    .caixa-principal.final .caixa-perguntas {
-      border-bottom: 2px solid var(--cor-destaque);
-      color: var(--cor-destaque);
-    }
-
-    /* ===== RESPONSIVO ===== */
-    @media (max-width: 600px) {
-      .caixa-principal {
-        padding: 2rem 1.2rem;
-      }
-      h1 {
-        font-size: 1.9rem;
-      }
-      .caixa-perguntas {
-        font-size: 1.3rem;
-        padding: 0.8rem 0.2rem;
-      }
-      button {
-        font-size: 1rem;
-        padding: 0.9rem 1.4rem;
-      }
-      .texto-resultado {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 400px) {
-      h1 {
-        font-size: 1.6rem;
-        flex-direction: column;
-        gap: 0.2rem;
-      }
-      h1::after {
-        font-size: 1.4rem;
-      }
-      .caixa-perguntas {
-        font-size: 1.1rem;
-      }
-      button {
-        font-size: 0.95rem;
-        padding: 0.8rem 1rem;
-      }
-    }
-  </style>
+        @media (max-width: 500px) {
+            h1 { font-size: 1.8rem; }
+            .caixa-perguntas { font-size: 1.1rem; }
+            button { font-size: 0.95rem; padding: 14px 16px; }
+            .caixa-principal { padding: 20px 15px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="caixa-principal" id="caixaPrincipal">
-    <h1>🔮 Futuro da IA</h1>
-    <div class="caixa-perguntas" id="caixaPerguntas"></div>
-    <div class="caixa-alternativas" id="caixaAlternativas"></div>
-    <div class="caixa-resultado" id="caixaResultado">
-      <p class="texto-resultado" id="textoResultado"></p>
+    <div class="caixa-principal" id="caixaPrincipal">
+        <h1>🤖 Futuro da IA</h1>
+        <div class="caixa-perguntas" id="caixaPerguntas"></div>
+        <div class="caixa-alternativas" id="caixaAlternativas"></div>
+        <div class="caixa-resultado">
+            <p class="texto-resultado" id="textoResultado"></p>
+        </div>
     </div>
-  </div>
 
-  <script>
-    (function() {
-      // ----- ELEMENTOS DOM -----
-      const caixaPrincipal = document.getElementById('caixaPrincipal');
-      const caixaPerguntas = document.getElementById('caixaPerguntas');
-      const caixaAlternativas = document.getElementById('caixaAlternativas');
-      const textoResultado = document.getElementById('textoResultado');
+    <script>
+        // ===== DOM =====
+        const caixaPrincipal = document.getElementById('caixaPrincipal');
+        const caixaPerguntas = document.getElementById('caixaPerguntas');
+        const caixaAlternativas = document.getElementById('caixaAlternativas');
+        const textoResultado = document.getElementById('textoResultado');
 
-      // ----- BASE DE PERGUNTAS (Futuro da IA) -----
-      const perguntas = [
-        {
-          enunciado: "A IA generativa (como o ChatGPT) está transformando a criatividade. Você acredita que ela deve ser usada como ferramenta de apoio ou como substituta da criação humana?",
-          alternativas: [
+        // ===== PERGUNTAS SOBRE FUTURO DA IA =====
+        const perguntas = [
             {
-              texto: "Ferramenta de apoio — potencializa a criatividade humana, mas o toque pessoal é insubstituível.",
-              afirmacao: "A IA generativa é uma aliada poderosa. Ela amplia nossa capacidade de criar, mas a essência, a emoção e a intenção humana continuam sendo o coração de toda obra. O futuro é colaborativo."
+                enunciado: "A Inteligência Artificial generativa (como ChatGPT e DALL-E) está revolucionando a criatividade. Como você acredita que devemos usá-la?",
+                alternativas: [
+                    {
+                        texto: "Como ferramenta de apoio — ela amplia nossa criatividade, mas o toque humano é insubstituível.",
+                        afirmacao: "A IA generativa é uma aliada poderosa. Ela potencializa nossa capacidade de criar, mas a essência, a emoção e a intenção humana continuam sendo o coração de toda obra. O futuro é colaborativo."
+                    },
+                    {
+                        texto: "Como substituta — em muitos casos, a IA já gera conteúdo tão bom ou melhor que o humano, com muito mais eficiência.",
+                        afirmacao: "A eficiência da IA é inegável, mas substituir completamente o humano na criação pode levar à perda de diversidade e autenticidade. O equilíbrio entre máquina e humano será o grande desafio."
+                    }
+                ]
             },
             {
-              texto: "Substituta — em muitos casos, a IA já gera conteúdo tão bom ou melhor que o humano, com muito mais eficiência.",
-              afirmacao: "A eficiência da IA é inegável, mas substituir completamente o humano na criação pode levar a uma perda de diversidade e autenticidade. O equilíbrio entre máquina e humano será o grande desafio."
-            }
-          ]
-        },
-        {
-          enunciado: "Com o avanço da IA, muitos empregos serão automatizados. Qual caminho você considera mais promissor para a sociedade?",
-          alternativas: [
-            {
-              texto: "Focar em requalificação e educação contínua, para que as pessoas ocupem funções que exigem inteligência emocional e criatividade.",
-              afirmacao: "Investir em educação e requalificação é a chave para um futuro onde humanos e IA coexistem. As habilidades socioemocionais e a capacidade de inovar serão os diferenciais."
+                enunciado: "Com o avanço da IA, muitos empregos serão automatizados. Qual caminho você considera mais promissor para a sociedade?",
+                alternativas: [
+                    {
+                        texto: "Investir em requalificação e educação contínua, focando em habilidades emocionais e criativas.",
+                        afirmacao: "Investir em educação e requalificação é a chave para um futuro onde humanos e IA coexistem. As habilidades socioemocionais e a capacidade de inovar serão os diferenciais."
+                    },
+                    {
+                        texto: "Aceitar a automação e implementar uma renda básica universal, enquanto a IA cuida das tarefas repetitivas.",
+                        afirmacao: "A renda básica universal pode ser uma solução para a disrupção causada pela IA, mas é fundamental repensar o sentido do trabalho e da realização pessoal na sociedade."
+                    }
+                ]
             },
             {
-              texto: "Aceitar a automação e buscar uma renda básica universal, enquanto a IA cuida das tarefas repetitivas.",
-              afirmacao: "A renda básica universal pode ser uma solução para a disrupção causada pela IA, mas é fundamental repensar o sentido do trabalho e da realização pessoal na sociedade."
-            }
-          ]
-        },
-        {
-          enunciado: "A IA pode tomar decisões éticas? Quem deve ser responsável por seus erros?",
-          alternativas: [
-            {
-              texto: "A IA não tem consciência, portanto a responsabilidade é sempre humana — desenvolvedores, empresas e governos.",
-              afirmacao: "A ética é uma construção humana. Por mais avançada que seja a IA, a responsabilidade final deve recair sobre quem a projeta e a utiliza. Transparência e auditoria são essenciais."
+                enunciado: "A IA pode tomar decisões éticas? Quem deve ser responsável por seus erros?",
+                alternativas: [
+                    {
+                        texto: "A IA não tem consciência, portanto a responsabilidade é sempre humana — desenvolvedores, empresas e governos.",
+                        afirmacao: "A ética é uma construção humana. Por mais avançada que seja a IA, a responsabilidade final deve recair sobre quem a projeta e a utiliza. Transparência e auditoria são essenciais."
+                    },
+                    {
+                        texto: "A IA pode ser programada com princípios éticos e, com o tempo, aprender a tomar decisões melhores que os humanos.",
+                        afirmacao: "Programar ética em IA é um desafio imenso, mas não impossível. No entanto, a complexidade moral humana dificilmente será totalmente capturada por algoritmos."
+                    }
+                ]
             },
             {
-              texto: "A IA pode ser programada com princípios éticos e, com o tempo, aprender a tomar decisões melhores que os humanos.",
-              afirmacao: "Programar ética em IA é um desafio imenso, mas não impossível. No entanto, a complexidade moral humana dificilmente será totalmente capturada por algoritmos."
-            }
-          ]
-        },
-        {
-          enunciado: "Qual o maior risco que a IA representa para a humanidade nas próximas décadas?",
-          alternativas: [
-            {
-              texto: "A perda de privacidade e o controle massivo de dados por poucas corporações.",
-              afirmacao: "A concentração de dados e o viés algorítmico são ameaças reais. Precisamos de regulamentação e conscientização para garantir que a IA sirva à democracia e não ao autoritarismo."
+                enunciado: "Qual o maior risco que a IA representa para a humanidade nas próximas décadas?",
+                alternativas: [
+                    {
+                        texto: "A perda de privacidade e o controle massivo de dados por poucas corporações.",
+                        afirmacao: "A concentração de dados e o viés algorítmico são ameaças reais. Precisamos de regulamentação e conscientização para garantir que a IA sirva à democracia e não ao autoritarismo."
+                    },
+                    {
+                        texto: "O desenvolvimento de armas autônomas e o uso bélico da IA.",
+                        afirmacao: "A corrida armamentista com IA é um dos maiores perigos. É urgente um tratado global que limite o uso de sistemas autônomos em conflitos, antes que seja tarde."
+                    }
+                ]
             },
             {
-              texto: "O desenvolvimento de armas autônomas e o uso bélico da IA.",
-              afirmacao: "A corrida armamentista com IA é um dos maiores perigos. É urgente um tratado global que limite o uso de sistemas autônomos em conflitos, antes que seja tarde."
+                enunciado: "Como você imagina a interação humano-IA daqui a 20 anos?",
+                alternativas: [
+                    {
+                        texto: "Será tão natural quanto usar a internet hoje — assistentes virtuais onipresentes e personalizados.",
+                        afirmacao: "A IA estará integrada ao nosso dia a dia, antecipando necessidades e facilitando tarefas. A fronteira entre o digital e o físico será cada vez mais tênue."
+                    },
+                    {
+                        texto: "Haverá uma resistência significativa, com movimentos contra a dependência tecnológica.",
+                        afirmacao: "A resistência é parte natural da evolução. Veremos um equilíbrio entre adoção e cautela, com comunidades buscando viver de forma mais desconectada da IA."
+                    }
+                ]
             }
-          ]
-        },
-        {
-          enunciado: "Como você imagina a interação humano-IA daqui a 20 anos?",
-          alternativas: [
-            {
-              texto: "Será tão natural quanto usar a internet hoje — assistentes virtuais onipresentes e personalizados.",
-              afirmacao: "A IA estará integrada ao nosso dia a dia, antecipando necessidades e facilitando tarefas. A fronteira entre o digital e o físico será cada vez mais tênue."
-            },
-            {
-              texto: "Haverá uma resistência significativa, com movimentos contra a dependência tecnológica e em defesa da autonomia humana.",
-              afirmacao: "A resistência é parte natural da evolução. Veremos um equilíbrio entre adoção e cautela, com comunidades buscando viver de forma mais desconectada da IA."
+        ];
+
+        // ===== ESTADO =====
+        let atual = 0;
+        let historiaFinal = "";
+
+        // ===== FUNÇÕES =====
+        function mostrarPergunta() {
+            if (atual >= perguntas.length) {
+                mostrarResultado();
+                return;
             }
-          ]
+
+            const perguntaAtual = perguntas[atual];
+            caixaPerguntas.textContent = perguntaAtual.enunciado;
+            caixaAlternativas.innerHTML = "";
+
+            perguntaAtual.alternativas.forEach((alternativa) => {
+                const botao = document.createElement('button');
+                botao.textContent = alternativa.texto;
+                botao.addEventListener('click', () => {
+                    historiaFinal += alternativa.afirmacao + " ";
+                    atual++;
+                    mostrarPergunta();
+                });
+                caixaAlternativas.appendChild(botao);
+            });
+
+            caixaPrincipal.classList.remove('final');
+            textoResultado.textContent = "";
         }
-      ];
 
-      // ----- ESTADO -----
-      let indiceAtual = 0;
-      let historiaFinal = "";
-
-      // ----- FUNÇÕES -----
-      function mostrarPergunta() {
-        // Se já respondemos todas as perguntas
-        if (indiceAtual >= perguntas.length) {
-          mostrarResultado();
-          return;
+        function mostrarResultado() {
+            caixaPrincipal.classList.add('final');
+            caixaPerguntas.textContent = "🧠 Reflexão sobre o Futuro da IA";
+            textoResultado.textContent = historiaFinal.trim() || "Nenhuma resposta registrada. Reflita sobre o impacto da IA em nossas vidas.";
+            caixaAlternativas.innerHTML = "";
         }
 
-        const perguntaAtual = perguntas[indiceAtual];
-        caixaPerguntas.textContent = perguntaAtual.enunciado;
-
-        // Limpa alternativas anteriores
-        caixaAlternativas.innerHTML = "";
-
-        // Cria botões para cada alternativa
-        perguntaAtual.alternativas.forEach((alternativa, index) => {
-          const botao = document.createElement('button');
-          botao.textContent = alternativa.texto;
-          // Adiciona um pequeno ícone ou indicador (opcional)
-          botao.setAttribute('data-index', index);
-          botao.addEventListener('click', function handleClick() {
-            // Remove listener para evitar múltiplos cliques
-            this.removeEventListener('click', handleClick);
-            // Guarda a afirmação
-            const afirmacao = alternativa.afirmacao;
-            historiaFinal += afirmacao + " ";
-            // Avança para a próxima pergunta
-            indiceAtual++;
-            mostrarPergunta();
-          });
-          caixaAlternativas.appendChild(botao);
-        });
-
-        // Remove classe 'final' caso exista (volta ao estado normal)
-        caixaPrincipal.classList.remove('final');
-        // Limpa resultado (caso esteja visível de uma rodada anterior)
-        textoResultado.textContent = "";
-      }
-
-      function mostrarResultado() {
-        // Marca como final (esconde alternativas, destaca)
-        caixaPrincipal.classList.add('final');
-        caixaPerguntas.textContent = "🧠 Reflexão sobre o Futuro da IA";
-        // Exibe o histórico de afirmações
-        textoResultado.textContent = historiaFinal.trim() || "Nenhuma resposta registrada. Reflita sobre o impacto da IA em nossas vidas.";
-        // Limpa alternativas (já escondidas pelo CSS, mas garantimos)
-        caixaAlternativas.innerHTML = "";
-      }
-
-      // ----- INICIALIZA -----
-      mostrarPergunta();
-
-      // (Opcional) Reiniciar a jornada se clicar no título ou no resultado?
-      // Pequeno easter egg: duplo clique no título reinicia
-      const titulo = document.querySelector('h1');
-      titulo.addEventListener('dblclick', function() {
-        indiceAtual = 0;
-        historiaFinal = "";
-        caixaPrincipal.classList.remove('final');
-        textoResultado.textContent = "";
+        // ===== INICIAR =====
         mostrarPergunta();
-        // feedback visual
-        titulo.style.transform = 'scale(0.95)';
-        setTimeout(() => titulo.style.transform = 'scale(1)', 150);
-      });
 
-      // Adiciona dica sutil no título
-      titulo.title = "Duplo clique para reiniciar a jornada";
-
-    })();
-  </script>
+        // ===== REINICIAR (duplo clique no título) =====
+        document.querySelector('h1').addEventListener('dblclick', function() {
+            atual = 0;
+            historiaFinal = "";
+            caixaPrincipal.classList.remove('final');
+            textoResultado.textContent = "";
+            mostrarPergunta();
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => this.style.transform = 'scale(1)', 150);
+        });
+    </script>
 </body>
 </html>
